@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
 
     resources.addResources(resourceData)
         .then((resource) => {
-            res.status(200).json(resource)
+            res.status(201).json(resource)
         })
         .catch(() => { res.status(500).json({ message: 'Failed to create bew resource' }) })
 })
