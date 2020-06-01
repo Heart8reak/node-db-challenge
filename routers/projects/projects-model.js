@@ -4,7 +4,7 @@ function find() {
     return db('projects')
 }
 
-function findById(iid) {
+function findById(id) {
     return db('projects').where({ id }).first()
 }
 
@@ -23,7 +23,7 @@ function findProjectTasks(id) {
     return db('tasks as t')
         .join('projects as p', 'p.id', 't.project_id')
         .select('t.id', 't.task_name', 't.completed')
-        .where('p.id': id)
+        .where({ 'p.id': id })
 }
 
 function addTasks(task, id) {

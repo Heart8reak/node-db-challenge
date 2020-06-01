@@ -8,9 +8,10 @@ router.get('/', (req, res) => {
     tasks.findTasks()
         .then((taskList) => {
             res.status(200).json(taskList)
+            console.log(taskList)
         })
-        .catch(() => {
-            res.status(500).json({ message: 'Failed to get lis of tasks' })
+        .catch((err) => {
+            res.status(500).json({ message: 'Failed to get list of tasks', error: err })
         })
 })
 
@@ -18,10 +19,10 @@ router.get('/:id', (req, res) => {
     const { id } = req.params
     tasks.findTaskById(id)
         .then((tasks) => {
-            res.status(200).json(task)
+            res.status(200).json(tasks)
         })
         .catch((err) => {
-            res.status(500).json({ message: 'Problem with the ID in the database' })
+            res.status(500).json({ message: 'Problem with the ID in the database', error: err })
         })
 })
 
@@ -33,8 +34,8 @@ router.post('/', (req, res) => {
         .then((task) => {
             res.status(201).json(task)
         })
-        .catch(() => {
-            res.status(500).json("message: Failed to create new task")
+        .catch((err) => {
+            res.status(500).json({ message: "Failed to create new task", error: err })
         })
 })
 
@@ -69,8 +70,8 @@ router.delete('/:id', (req, res) => {
                 res.status(404).json({ message: 'Could not find task with given id' })
             }
         })
-        .catch(() => {
-            res.status(500).json({ message: 'Failed to delete task' })
+        .catch((err) => {
+            res.status(500).json({ message: 'Failed to delete task', error: err })
         })
 })
 

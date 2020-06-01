@@ -2,14 +2,14 @@ const db = require('../../data/db-config')
 
 function findTasks() {
     return db('tasks as t')
-        .join('projects as', 't.project_id', 'p.id')
-        .select('t.*', 'p.project_namwe', 'p.project_description')
+        .join('projects as p', 't.project_id', 'p.id')
+        .select('t.*', 'p.project_name', 'p.project_description')
 }
 
 function findTaskById(id) {
     return db('tasks').where({ id })
 }
-
+1
 function addTasks(resourceData) {
     return db('tasks').insert(resourceData)
 }
@@ -19,7 +19,7 @@ function update(change, id) {
 }
 
 function remove(id) {
-    return db('tasks').where("id").del()
+    return db('tasks').where({ id }).del()
 }
 
 module.exports = {

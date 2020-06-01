@@ -36,8 +36,8 @@ router.post('/', (req, res) => {
         .then((project) => {
             res.status(201).json(({ message: 'Created new project!' }), project)
         })
-        .catch(() => {
-            res.status(500).json({ message: 'Failed to create new project' })
+        .catch((err) => {
+            res.status(500).json({ message: 'Failed to create new project', error: err })
         })
 })
 
